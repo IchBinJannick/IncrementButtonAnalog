@@ -5,8 +5,13 @@
 #include <avr/sleep.h>
 #include <avr/interrupt.h>
 
+#define res_button_pin 4
 #define button_pin 3
 #define led_pin 2
+#define res_led_pin 5
+
+#define DEBOUNCE_MS 50
+unsigned long SLEEP_AFTER_MS = 20000;
 
 // SSD1306 128x64 I2C
 // A4 = SDA, A5 = SCL
@@ -16,9 +21,14 @@ int counter = 0;
 int buttonState = 0;
 bool buttonWasPressed = false;
 unsigned long lastActivity = 0;
-const unsigned long SLEEP_AFTER_MS = 20000;
-const unsigned long LONG_PRESS_MS = 5000;
-unsigned long pressStart = 0;
+
+int countButtonState = HIGH;
+int lastCountButtonState = HIGH;
+unsigned long lastDebounceCount = 0;
+
+int resetButtonState = HIGH;
+int lastResetButtonState = HIGH;
+unsigned long lastDebounceReset = 0;
 
 void drawCounter()
 {
@@ -58,8 +68,16 @@ void goSleep()
   {
     delay(10);
   }
-  delay(50);
-  buttonWasPressed = (digitalRead(button_pin) == LOW);
+  delay(DEBOUNCE_MS);
+
+  countButtonState = HIGH;
+  lastCountButtonState = HIGH;
+  lastDebounceReset = millis();
+
+  resetButtonState = HIGH;
+  lastResetButtonState = HIGH;
+  lastDebounceReset = millis();
+
   drawCounter();
 }
 
@@ -68,51 +86,71 @@ void setup()
   EEPROM.get(0, counter);
   if (counter < 0 || counter > 9999)
     counter = 0;
+
   pinMode(led_pin, OUTPUT);
+  pinMode(res_led_pin, OUTPUT);
   pinMode(button_pin, INPUT_PULLUP);
+  pinMode(res_button_pin, INPUT_PULLUP);
+
   Wire.begin();
   dis.begin();
-  delay(50);
-  buttonWasPressed = (digitalRead(button_pin) == LOW);
+
   drawCounter();
+  lastActivity = millis();
 }
 
 void loop()
 {
-  bool pressed = digitalRead(button_pin) == LOW;
-  buttonState = digitalRead(button_pin);
-  digitalWrite(led_pin, buttonState);
+  // ── Count Button Debounce ──────────────────────────────
+  int countReading = digitalRead(button_pin);
 
-  if (pressed && !buttonWasPressed)
-  {
-    pressStart = millis();
-    buttonWasPressed = true;
-    lastActivity = millis();
-  }
+  if (countReading != lastCountButtonState)
+    lastDebounceCount = millis();
 
-  if (pressed && buttonWasPressed)
+  if ((millis() - lastDebounceCount) > DEBOUNCE_MS)
   {
-    if (millis() - pressStart >= LONG_PRESS_MS)
+    if (countReading != countButtonState)
     {
-      counter = 0;
-      EEPROM.put(0, counter);
-      drawCounter();
-      pressStart = millis();
+      countButtonState = countReading;
+
+      // INPUT_PULLUP → gedrückt = LOW
+      if (countButtonState == LOW)
+      {
+        counter++;
+        EEPROM.put(0, counter);
+        drawCounter();
+        lastActivity = millis();
+      }
     }
   }
+  lastCountButtonState = countReading;
+  digitalWrite(led_pin, countReading); // leuchtet beim Drücken
 
-  if (!pressed && buttonWasPressed)
+  // ── Reset Button Debounce ──────────────────────────────
+  int resetReading = digitalRead(res_button_pin);
+
+  if (resetReading != lastResetButtonState)
+    lastDebounceReset = millis();
+
+  if ((millis() - lastDebounceReset) > DEBOUNCE_MS)
   {
-    if (millis() - pressStart < LONG_PRESS_MS)
+    if (resetReading != resetButtonState)
     {
-      counter++;
-      EEPROM.put(0, counter);
-      drawCounter();
-    }
-    buttonWasPressed = false;
-    lastActivity = millis();
-  }
+      resetButtonState = resetReading;
 
+      if (resetButtonState == LOW)
+      {
+        counter = 0;
+        EEPROM.put(0, counter);
+        drawCounter();
+        lastActivity = millis();
+      }
+    }
+  }
+  lastResetButtonState = resetReading;
+  digitalWrite(res_led_pin, resetReading);
+
+  // ── Sleep ──────────────────────────────────────────────
   if (millis() - lastActivity >= SLEEP_AFTER_MS)
   {
     goSleep();
