@@ -9,6 +9,7 @@
 #define button_pin 3
 #define led_pin 2
 #define res_led_pin 5
+#define EEPROM_OFFSET 10
 
 #define DEBOUNCE_MS 50
 unsigned long SLEEP_AFTER_MS = 20000;
@@ -22,12 +23,12 @@ int buttonState = 0;
 bool buttonWasPressed = false;
 unsigned long lastActivity = 0;
 
-int countButtonState = HIGH;
-int lastCountButtonState = HIGH;
+int countButtonState = LOW;
+int lastCountButtonState = LOW;
 unsigned long lastDebounceCount = 0;
 
-int resetButtonState = HIGH;
-int lastResetButtonState = HIGH;
+int resetButtonState = LOW;
+int lastResetButtonState = LOW;
 unsigned long lastDebounceReset = 0;
 
 void drawCounter()
@@ -70,12 +71,12 @@ void goSleep()
   }
   delay(DEBOUNCE_MS);
 
-  countButtonState = HIGH;
-  lastCountButtonState = HIGH;
-  lastDebounceReset = millis();
+  countButtonState = LOW;
+  lastCountButtonState = LOW;
+  lastDebounceCount = millis();
 
-  resetButtonState = HIGH;
-  lastResetButtonState = HIGH;
+  resetButtonState = LOW;
+  lastResetButtonState = LOW;
   lastDebounceReset = millis();
 
   drawCounter();
@@ -83,7 +84,7 @@ void goSleep()
 
 void setup()
 {
-  EEPROM.get(0, counter);
+  EEPROM.get(EEPROM_OFFSET, counter);
   if (counter < 0 || counter > 9999)
     counter = 0;
 
@@ -117,7 +118,7 @@ void loop()
       if (countButtonState == LOW)
       {
         counter++;
-        EEPROM.put(0, counter);
+        EEPROM.put(EEPROM_OFFSET, counter);
         drawCounter();
         lastActivity = millis();
       }
@@ -141,7 +142,7 @@ void loop()
       if (resetButtonState == LOW)
       {
         counter = 0;
-        EEPROM.put(0, counter);
+        EEPROM.put(EEPROM_OFFSET, counter);
         drawCounter();
         lastActivity = millis();
       }
