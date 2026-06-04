@@ -1506,22 +1506,10 @@
 		(uuid "8f273360-a411-4057-a7c7-65653d8bf085")
 	)
 	(junction
-		(at 176.53 106.68)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "93b91393-8541-44d4-bf88-19d393553248")
-	)
-	(junction
 		(at 212.09 53.34)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a0e7acc3-400c-4ad1-be0e-ac0cd362ce6b")
-	)
-	(junction
-		(at 176.53 97.79)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d7847d92-4361-46bc-be78-2bed1e8f7f4f")
 	)
 	(no_connect
 		(at 90.17 73.66)
@@ -1727,16 +1715,6 @@
 	)
 	(wire
 		(pts
-			(xy 191.77 97.79) (xy 176.53 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2dca94e4-a7b4-4d97-978f-ed6fb9e30f64")
-	)
-	(wire
-		(pts
 			(xy 176.53 67.31) (xy 179.07 67.31)
 		)
 		(stroke
@@ -1787,16 +1765,6 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 97.79) (xy 176.53 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "398df354-f1bd-4273-bcc3-97e955be8b1f")
-	)
-	(wire
-		(pts
 			(xy 176.53 76.2) (xy 201.93 76.2)
 		)
 		(stroke
@@ -1814,16 +1782,6 @@
 			(type default)
 		)
 		(uuid "3cd070c8-8d4b-41bc-b1da-5258fef71d92")
-	)
-	(wire
-		(pts
-			(xy 191.77 106.68) (xy 191.77 105.41)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4906dfb0-e405-41be-82d0-6d29ac01d7b2")
 	)
 	(wire
 		(pts
@@ -1867,16 +1825,6 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 106.68) (xy 191.77 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5f64a3ef-ffd9-42dd-9e4b-906384fd8146")
-	)
-	(wire
-		(pts
 			(xy 80.01 53.34) (xy 128.27 53.34)
 		)
 		(stroke
@@ -1904,16 +1852,6 @@
 			(type default)
 		)
 		(uuid "78ddec99-b477-4932-b798-38a193d72a8b")
-	)
-	(wire
-		(pts
-			(xy 176.53 76.2) (xy 176.53 97.79)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7f0dc160-9179-44f7-9013-ac1a1cc3bec7")
 	)
 	(wire
 		(pts
@@ -2017,6 +1955,16 @@
 	)
 	(wire
 		(pts
+			(xy 176.53 76.2) (xy 176.53 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c9417ae8-b8e7-4055-a8dc-ba72b039bc01")
+	)
+	(wire
+		(pts
 			(xy 212.09 53.34) (xy 212.09 67.31)
 		)
 		(stroke
@@ -2074,16 +2022,6 @@
 			(type default)
 		)
 		(uuid "d9951e69-594c-4870-aedc-9918192272c7")
-	)
-	(wire
-		(pts
-			(xy 176.53 127) (xy 176.53 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e1efa8ea-beb7-4c21-ba51-e616ede8ba2c")
 	)
 	(wire
 		(pts
@@ -2939,99 +2877,6 @@
 			(project "increment_button"
 				(path "/7090d103-b608-433c-8c6c-b1ecb5c61ded"
 					(reference "A1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED")
-		(at 191.77 101.6 270)
-		(unit 1)
-		(body_style 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(in_pos_files yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "b2939806-6b0f-495c-9534-44b83e534d4e")
-		(property "Reference" "D3"
-			(at 194.31 98.7424 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "LED"
-			(at 194.31 101.2824 90)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 191.77 101.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Datasheet" ""
-			(at 191.77 101.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Description" "Light emitting diode"
-			(at 191.77 101.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 191.77 101.6 0)
-			(hide yes)
-			(show_name no)
-			(do_not_autoplace no)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(pin "1"
-			(uuid "ca995c7c-98bb-4834-a310-f5138e9fa6a2")
-		)
-		(pin "2"
-			(uuid "17d87580-4ced-4466-aaaa-9916376cbfee")
-		)
-		(instances
-			(project "increment_button"
-				(path "/7090d103-b608-433c-8c6c-b1ecb5c61ded"
-					(reference "D3")
 					(unit 1)
 				)
 			)
