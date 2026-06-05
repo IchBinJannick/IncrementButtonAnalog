@@ -1476,6 +1476,12 @@
 		)
 	)
 	(junction
+		(at 176.53 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "01e4589b-4736-4d7f-ba48-21b1c4934b64")
+	)
+	(junction
 		(at 176.53 76.2)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1510,6 +1516,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a0e7acc3-400c-4ad1-be0e-ac0cd362ce6b")
+	)
+	(junction
+		(at 176.53 102.87)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b8b6ab7d-bc15-4ae4-acc3-fe2cbed1df88")
 	)
 	(no_connect
 		(at 90.17 73.66)
@@ -1642,6 +1654,16 @@
 			(type default)
 		)
 		(uuid "09e09c86-abc7-4212-8ed6-77204a403fd9")
+	)
+	(wire
+		(pts
+			(xy 176.53 102.87) (xy 186.69 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0b3303f7-12a8-4196-b8e7-388e65257ad9")
 	)
 	(wire
 		(pts
@@ -1785,6 +1807,16 @@
 	)
 	(wire
 		(pts
+			(xy 176.53 95.25) (xy 186.69 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "406aed2d-cc87-4812-8e04-22a7767939d7")
+	)
+	(wire
+		(pts
 			(xy 62.23 48.26) (xy 62.23 78.74)
 		)
 		(stroke
@@ -1825,6 +1857,16 @@
 	)
 	(wire
 		(pts
+			(xy 176.53 102.87) (xy 176.53 127)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "52fa09d8-25d1-4f28-85cc-7bfec4588dbc")
+	)
+	(wire
+		(pts
 			(xy 80.01 53.34) (xy 128.27 53.34)
 		)
 		(stroke
@@ -1852,6 +1894,16 @@
 			(type default)
 		)
 		(uuid "78ddec99-b477-4932-b798-38a193d72a8b")
+	)
+	(wire
+		(pts
+			(xy 176.53 95.25) (xy 176.53 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "79f5c783-998d-4f6f-9e63-f98e8b3471d3")
 	)
 	(wire
 		(pts
@@ -1955,7 +2007,7 @@
 	)
 	(wire
 		(pts
-			(xy 176.53 76.2) (xy 176.53 127)
+			(xy 176.53 76.2) (xy 176.53 95.25)
 		)
 		(stroke
 			(width 0)
@@ -2212,6 +2264,99 @@
 			(project "increment_button"
 				(path "/7090d103-b608-433c-8c6c-b1ecb5c61ded"
 					(reference "D1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 186.69 99.06 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "1cd2f0b7-d401-4441-9106-8de04b803f46")
+		(property "Reference" "D3"
+			(at 190.5 99.3774 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "LED"
+			(at 190.5 101.9174 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_01005_0402Metric"
+			(at 186.69 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 186.69 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Light emitting diode"
+			(at 186.69 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 186.69 99.06 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "a0803255-111d-4694-b4c2-93cff37603f2")
+		)
+		(pin "1"
+			(uuid "2ec5beb6-94b2-4fef-89fe-1be7aa760d24")
+		)
+		(instances
+			(project "increment_button"
+				(path "/7090d103-b608-433c-8c6c-b1ecb5c61ded"
+					(reference "D3")
 					(unit 1)
 				)
 			)
